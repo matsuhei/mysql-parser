@@ -1,5 +1,5 @@
 /*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
+Copyright © 2022 matsuhei
 
 */
 package cmd
@@ -45,7 +45,7 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.mysql-parser.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $CURRENT/.mysql-parser.yaml)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
@@ -58,12 +58,12 @@ func initConfig() {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
 	} else {
-		// Find home directory.
-		home, err := os.UserHomeDir()
+		// Find current directory.
+		current, err := os.Getwd()
 		cobra.CheckErr(err)
 
-		// Search config in home directory with name ".mysql-parser" (without extension).
-		viper.AddConfigPath(home)
+		// Search config in current directory with name ".mysql-parser" (without extension).
+		viper.AddConfigPath(current)
 		viper.SetConfigType("yaml")
 		viper.SetConfigName(".mysql-parser")
 	}

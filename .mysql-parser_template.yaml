@@ -1,0 +1,6 @@
+# 環境変数設定用のyamlファイル
+db-user: ""
+password: ""
+datasource: ""
+dbname: ""
+format-type: ""
